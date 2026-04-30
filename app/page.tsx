@@ -17,7 +17,7 @@ export default async function Home() {
 
         <section className="exercise-grid" aria-label="Cvika">
           {exercises.map((exercise) => (
-            <Link className="exercise-card" href={`/cviko/${exercise.slug}`} key={exercise.slug}>
+            <Link className="exercise-card" href={`/cviko/${exercise.slug}/learning`} key={exercise.slug}>
               <div className="exercise-title">{exercise.name}</div>
               <div className="exercise-meta">
                 {exercise.questionCount} otazok · {exercise.files.length} subory

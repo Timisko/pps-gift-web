@@ -1,6 +1,4 @@
-import Link from "next/link";
-import { notFound } from "next/navigation";
-import QuizWorkspace from "@/components/QuizWorkspace";
+import { notFound, redirect } from "next/navigation";
 import { getExercise, getExercises } from "@/lib/gift";
 
 type PageProps = {
@@ -20,22 +18,5 @@ export default async function ExercisePage({ params }: PageProps) {
     notFound();
   }
 
-  return (
-    <main className="page">
-      <div className="shell">
-        <header className="topbar">
-          <div>
-            <p className="eyebrow">Cviko</p>
-            <h1>{exercise.name}</h1>
-            <p className="lead">Learning cast robi z otazok karticky. Test cast ich zamiesa a vyhodnoti presne oznacene spravne odpovede.</p>
-          </div>
-          <Link className="button ghost" href="/">
-            Vyber cviko
-          </Link>
-        </header>
-
-        <QuizWorkspace exercise={exercise} />
-      </div>
-    </main>
-  );
+  redirect(`/cviko/${exercise.slug}/learning`);
 }

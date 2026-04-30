@@ -1,5 +1,6 @@
 "use client";
 
+import Link from "next/link";
 import { useMemo, useState } from "react";
 import type { Exercise, GiftQuestion } from "@/lib/gift";
 
@@ -8,10 +9,10 @@ type AnswerMap = Record<string, string[]>;
 
 type Props = {
   exercise: Exercise;
+  mode: Mode;
 };
 
-export default function QuizWorkspace({ exercise }: Props) {
-  const [mode, setMode] = useState<Mode>("learn");
+export default function QuizWorkspace({ exercise, mode }: Props) {
   const [cardIndex, setCardIndex] = useState(0);
   const [isBackVisible, setIsBackVisible] = useState(false);
   const [seed, setSeed] = useState(0);
@@ -65,12 +66,12 @@ export default function QuizWorkspace({ exercise }: Props) {
     <div className="workspace">
       <aside className="panel">
         <div className="tabs" role="tablist" aria-label="Rezim">
-          <button className={`tab ${mode === "learn" ? "active" : ""}`} onClick={() => setMode("learn")} type="button">
+          <Link className={`tab ${mode === "learn" ? "active" : ""}`} href={`/cviko/${exercise.slug}/learning`}>
             Learning
-          </button>
-          <button className={`tab ${mode === "test" ? "active" : ""}`} onClick={() => setMode("test")} type="button">
+          </Link>
+          <Link className={`tab ${mode === "test" ? "active" : ""}`} href={`/cviko/${exercise.slug}/test`}>
             Test
-          </button>
+          </Link>
         </div>
 
         <div className="stats">
@@ -155,6 +156,16 @@ export default function QuizWorkspace({ exercise }: Props) {
           </div>
         ) : (
           <>
+            <div className="test-header">
+              <div>
+                <div className="score">{submitted ? `${score} / ${testQuestions.length} spravne` : "Test je pripraveny"}</div>
+                <div className="muted">Otazky aj odpovede su nahodne zoradene.</div>
+              </div>
+              <button className="button ghost" onClick={restartTest} type="button">
+                Zacat znova
+              </button>
+            </div>
+
             <div className="question-stack">
               {testQuestions.map((question, index) => {
                 const selected = selectedAnswers[question.id] ?? [];
@@ -198,16 +209,11 @@ export default function QuizWorkspace({ exercise }: Props) {
             <div className="result-bar">
               <div>
                 <div className="score">{submitted ? `${score} / ${testQuestions.length} spravne` : "Test je pripraveny"}</div>
-                <div className="muted">Otazky aj odpovede su nahodne zoradene.</div>
+                <div className="muted">{submitted ? "Spravne odpovede su zvyraznene v teste." : "Po dokonceni testu si ho vyhodnot."}</div>
               </div>
-              <div className="segmented">
-                <button className="button ghost" onClick={restartTest} type="button">
-                  Zamiesat
-                </button>
-                <button className="button primary" onClick={() => setSubmitted(true)} type="button">
-                  Vyhodnotit
-                </button>
-              </div>
+              <button className="button primary" onClick={() => setSubmitted(true)} type="button">
+                Vyhodnotit
+              </button>
             </div>
           </>
         )}
