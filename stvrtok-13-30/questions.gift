@@ -1,0 +1,27 @@
+::Procesy a paralelné programovanie:: Čo platí o procesoch v paralelných programoch? {
+    ~%33.333% Proces je samostatný bežiaci program s vlastnou pamäťou a zdrojmi.
+    ~%33.333% Môžeme vytvoriť viac procesov, než máme fyzických jadier, ale nadbytočné procesy spomalia výkon kvôli prepínaniu kontextu.
+    ~%33.333% Použitie viacerých procesov umožňuje efektívne využiť viac jadier CPU.
+    ~%-100% Počet procesov musí byť vždy rovný počtu jadier, inak program nebude fungovať.
+}
+
+::Procesy a zdieľanie dát:: Čo platí o zdieľaní dát medzi procesmi? {
+    ~%33.333% Procesy nezdielajú automaticky premenné, každému patrí vlastná pamäť.
+    ~%33.333% Na zdieľanie dát sa používajú špeciálne mechanizmy, ako `Queue`, `Pipe` alebo `Manager`.
+    ~%33.333% Zdieľanie dát medzi procesmi je pomalšie ako medzi vláknami kvôli kopírovaniu dát.
+    ~%-100% Procesy môžu priamo zapisovať do pamäte iných procesov bez synchronizácie.
+}
+
+::Prepínanie procesov:: Čo sa deje, ak je počet procesov väčší ako počet jadier CPU? {
+    ~%33.333% Oni sa prepínajú medzi jadrami pomocou time-slicing (prepínania kontextu).
+    ~%33.333% Čas potrebný na prepínanie procesov môže spôsobiť, že výkon nebude lineárne rásť.
+    ~%33.333% Niektoré procesy musia čakať, kým jadro uvoľní svoje zdroje.
+    ~%-100% Všetky procesy bežia úplne paralelne bez prepínania.
+}
+
+::Multiprocessing vs Multithreading:: Prečo je v Python často `multiprocessing` efektívnejší pri CPU-bound úlohách? {
+    ~%33.333% Pythonovský Global Interpreter Lock (GIL) blokuje súbežné vykonávanie viacerých vlákien v jednej interpretácii Pythonu.
+    ~%33.333% Multiprocessing vytvára samostatné procesy, ktoré obchádzajú GIL a môžu plne využívať viac jadier CPU.
+    ~%33.333% Pri CPU-bound úlohách je využitie multiprocessing efektívnejšie na skrátenie času výpočtu.
+    ~%-100% Multithreading vždy beží rýchlejšie než multiprocessing.
+}

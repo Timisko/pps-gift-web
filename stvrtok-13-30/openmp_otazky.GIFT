@@ -1,0 +1,27 @@
+::Q1:: Ako v OpenMP určíme paralelný región?{
+~ Použitím funkcie omp_start_parallel()
+= Pomocou direktívy #pragma omp parallel
+~ Použitím funkcie omp_end_parallel()
+~ Automaticky pri kompilácii bez direktív
+}
+
+::Q2:: Čo znamená zápis #pragma omp parallel private(a) num_threads(4)?{
+= Vytvorí paralelný región so 4 vláknami
+= Každé vlákno má vlastnú kópiu premennej a
+~ Premenná a je zdieľaná medzi všetkými vláknami
+~ Počet vlákien riadi automaticky operačný systém
+}
+
+::Q3:: Čo je bariéra v OpenMP?{
+= Synchronizačný bod programu
+= Miesto, kde vlákna čakajú na ostatné vlákna
+~ Mechanizmus na vytváranie nových vlákien
+= Synchronizuje vlákna pred pokračovaním programu
+}
+
+::Q4:: Čo charakterizuje fork-join model?{
+= Program začne sekvenčne a vytvorí paralelné vlákna
+= Vlákna sa po skončení paralelnej časti spoja
+~ Vlákna existujú počas celého programu
+= Používa sa napríklad v OpenMP
+}

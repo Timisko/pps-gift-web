@@ -1,0 +1,31 @@
+::CUDA Pamäťový model::Ktoré z nasledujúcich typov pamäte v CUDA architektúre sú zdieľané medzi všetkými vláknami v rámci jedného bloku? {
+  ~%50%Shared memory
+  ~%0%Global memory
+  ~%0%Local memory
+  ~%50%Dynamicky alokovaná shared memory (__shared__ extern)
+  ~%0%Register memory
+}
+
+::CUDA Hierarchia vlákien::Ktoré tvrdenia o hierarchii vlákien v CUDA sú pravdivé? {
+  ~%25%Vlákna sú organizované do blokov a bloky do mriežky (grid).
+  ~%25%Maximálny počet vlákien v jednom bloku je hardvérovo obmedzený (typicky 1024).
+  ~%0%Všetky vlákna v mriežke sa vždy vykonávajú súčasne.
+  ~%25%Vlákna v rámci jedného warpu vykonávajú rovnakú inštrukciu (SIMT).
+  ~%25%Bloky môžu byť 1D, 2D alebo 3D.
+}
+
+::CUDA Synchronizácia::Ktoré z uvedených mechanizmov sa používajú na synchronizáciu vlákien v CUDA? {
+  ~%33.33%__syncthreads() synchronizuje vlákna v rámci jedného bloku.
+  ~%0%__syncthreads() synchronizuje všetky vlákna v celej mriežke.
+  ~%33.33%Atomické operácie (napr. atomicAdd) zabezpečujú konzistentný prístup ku globálnej pamäti.
+  ~%0%Vlákna z rôznych blokov je možné synchronizovať pomocou __syncthreads().
+  ~%33.33%cudaDeviceSynchronize() synchronizuje hostiteľa s GPU zariadením.
+}
+
+::CUDA Prenos dát::Ktoré tvrdenia o prenose dát medzi hostiteľom (CPU) a zariadením (GPU) sú správne? {
+  ~%33.33%Funkcia cudaMemcpy() sa používa na kopírovanie dát medzi CPU a GPU.
+  ~%33.33%Parameter cudaMemcpyHostToDevice určuje smer kopírovania z CPU do GPU.
+  ~%0%GPU kernel môže priamo pristupovať k pamäti alokovanej pomocou malloc() na CPU.
+  ~%33.33%Pamäť na GPU sa alokuje pomocou cudaMalloc().
+  ~%0%Prenos dát medzi CPU a GPU prebieha cez L2 cache.
+}
