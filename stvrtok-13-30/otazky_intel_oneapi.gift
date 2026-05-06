@@ -1,0 +1,35 @@
+::parallel_for_vs_reduce::
+Aký je dôležitý rozdiel medzi parallel_for a parallel_reduce?
+{
+=parallel_for sa zameriava na nezávislé vykonanie iterácií
+=parallel_reduce je určená na prípady, keď treba vytvoriť jeden výsledok z viacerých čiastkových výpočtov
+~parallel_for sa používa iba na GPU a parallel_reduce iba na CPU
+~parallel_reduce nedokáže pracovať s rozdelením dát na menšie časti
+}
+
+::blocked_range_vyznam::
+Aký je význam blocked_range v oneTBB?
+{
+=Predstavuje interval hodnôt, ktorý sa môže rozdeliť na menšie časti pre paralelné spracovanie
+=Pomáha knižnici rozhodnúť, ako rozdeliť iterácie medzi vlákna
+~Slúži na uzamknutie kritickej sekcie
+~Používa sa len pri práci s GPU jadrami
+}
+
+::parallel_for_ucel::
+Na čo sa používa parallel_for?
+{
+~Na spojenie viacerých čiastkových výsledkov do jednej hodnoty
+=Na paralelné vykonanie nezávislých iterácií cyklu
+=Na rozdelenie práce medzi viac vlákien pri operáciách nad poľom alebo rozsahom dát
+~Na obmedzenie maximálneho počtu vlákien v programe
+}
+
+::global_control_pouzitie::
+Na čo sa používa oneapi tbb global_control?
+{
+=Na ovplyvnenie globálneho správania vykonávania TBB
+=Na nastavenie horného limitu počtu pracovných vlákien
+~Na definovanie redukčnej operácie v parallel_reduce
+~Na automatickú opravu dátových pretekov
+}

@@ -1,0 +1,33 @@
+::Otazka1_SynchronizedKeyword::
+Ktorú synchronizačnú techniku v Jave používa kľúčové slovo synchronized? {
+=%100% vzájomné vylúčenie (monitor / mutex)
+~%-100% semaphore
+~%-100% barrier synchronizácia
+~%-100% atómové operácie
+}
+
+::Otazka2_Volatile::
+Ktoré tvrdenia o kľúčovom slove volatile sú správne? {
+=%50% Zabezpečuje viditeľnosť zmien premennej medzi vláknami.
+~%-100% Zaručuje atómovosť všetkých operácií nad premennou.
+=%50% Hodí sa na jednoduché stavové príznaky.
+~%-100% Nahrádza Semaphore vo všetkých prípadoch.
+=%50% Nezabezpečuje bezpečnosť zložených operácií, ako napríklad inkrementácia.
+}
+
+::Otazka3_ThreadPool::
+Ako sa v Jave najčastejšie vytvára thread pool s pevným počtom vlákien? {
+~%-100% new ThreadPool(4)
+=%100% Executors.newFixedThreadPool(4)
+~%-100% Thread.createPool(4)
+~%-100% ExecutorService.create(4)
+}
+
+::Otazka4_Barrier::
+Aké vlastnosti má barrier synchronizácia? {
+=%50% Vlákna čakajú, kým všetky nedosiahnu rovnaký synchronizačný bod.
+=%50% Používa sa pri výpočtoch rozdelených do viacerých fáz.
+~%-100% Zabezpečuje, že iba jedno vlákno môže vstúpiť do kritickej sekcie.
+=%50% V Jave sa môže realizovať pomocou CyclicBarrier.
+~%-100% Slúži iba na ukladanie dát medzi vláknami.
+}
