@@ -1,35 +1,35 @@
-// CSV Parser - otazka 1
-::CSV: Synchronizacne problemy pri paralelnom spracovani CSV:: Ake synchronizacne problemy vznikaju pri paralelnom spracovani CSV suboru pomocou pthread? {
-  ~%50%Viacero vlakien zapisujucich do rovnakeho vystupneho suboru potrebuje mutex na ochranu zapisu
-  ~%50%Rozdelenie suboru medzi vlakna musi byt na hraniciach riadkov, inak sa moze rozdelit riadok medzi dve vlakna
-  ~%-33.33333%Kazde vlakno potrebuje vlastnu kopiu vstupneho suboru v pamati
-  ~%-33.33333%Parsovanie platu z retazca nie je vlakovo bezpecne a vyzaduje globalny zamok
-  ~%-33.33333%Citanie zo suborov v pamati vyzaduje semaforovu synchronizaciu medzi vlaknami
+// Otázka 1 - Operačné systémy
+::pthread - Operačné systémy::Na ktorých operačných systémoch je pthread štandardne dostupný?{
+  ~%33.33333%Linux
+  ~%33.33333%macOS
+  ~%33.33333%Android
+  ~Windows
+  ~MS-DOS
 }
 
-// CSV Parser - otazka 2
-::CSV: Dovod spomalenia pri vacssom pocte vlakien:: Preco paralelne spracovanie CSV suboru vykazuje spomalenie (speedup < 1) pri vacssom pocte vlakien? {
-  ~%50%Mutex kontencia na zdielanom vystupnom subore serializuje vykonavanie vlakien a pridava reziu
-  ~%50%Rezia na vytvorenie vlakien a synchronizaciu prevysuje vypoctovy zisk z paralelizacie
-  ~%-33.33333%CSV subory maju inherentne sekvencne datove zavislosti medzi riadkami
-  ~%-33.33333%Operacny system limituje sucasne citanie suboru na jedno vlakno
-  ~%-33.33333%Hodnoty typu float sa lisia pri parsovani v roznych vlaknach
+// Otázka 2 - Zdieľané prostriedky
+::pthread - Zdieľané prostriedky::Čo zdieľajú vlákna vytvorené cez pthread v rámci jedného procesu?{
+  ~%33.33333%Heap (dynamickú pamäť)
+  ~%33.33333%Globálne premenné
+  ~%33.33333%Otvorené súborové deskriptory
+  ~Stack
+  ~Program counter (ukazovateľ na aktuálnu inštrukciu)
 }
 
-// Bankova simulacia - otazka 3
-::Banka: Techniky prevencie chyb v paralelnej simulacii:: Ake techniky pouziva paralelna bankova simulacia na zabezpecenie spravnosti a prevenciu chyb? {
-  ~%50%Mutex pre kazdy ucet (per-account lock) chrani pristup k zostatku pri sUcastnom pristupe viacerych vlakien
-  ~%50%Zamykanie dvoch uctov pri prevode vzdy v poradi podla indexu (nizsi prvy) zabranuje deadlocku
-  ~%-33.33333%Pouzitie klucoveho slova volatile pre premennu zostatok zaruci spravnost pri paralelnom pristupe
-  ~%-33.33333%Alokovanie separatnej pamate pre kazde vlakno automaticky zabranuje pretekom dat (race condition)
-  ~%-33.33333%Jeden globalny mutex pre vsetky ucty je jediny sposob ako zabranit race condition pri prevode
+// Otázka 3 - Synchronizačné mechanizmy
+::pthread - Synchronizačné mechanizmy::Ktoré synchronizačné mechanizmy poskytuje pthread knižnica?{
+  ~%20%Mutex
+  ~%20%Condition variable
+  ~%20%Read-Write lock
+  ~%20%Barrier
+  ~%20%Spinlock
+  ~Message queue
 }
 
-// Bankova simulacia - otazka 4
-::Banka: Dokazovanie race condition:: Co dokazuje vyskyt race condition v bankovej simulacii bez synchronizacie (no-sync)? {
-  ~%50%Verzia bez synchronizacie produkuje rozny konecny zostatok pri kazdom spusteni s rovnakymi vstupnymi datami
-  ~%50%Operacia balance += amount nie je atomicka — sklada sa z citania, modifikacie a zapisu, co umoznuje prepisanie dat inym vlaknom
-  ~%-33.33333%Deadlock nastava ked dve vlakna sucasne prevadzaju medzi rovnakymi uctami bez mutexov
-  ~%-33.33333%Synchronizovana verzia vzdy produkuje identicky vysledok ako sekvencna verzia
-  ~%-33.33333%Race condition sa prejavuje iba pri operacii TRANSFER, nie pri DEPOSIT alebo WITHDRAWAL
+// Otázka 4 - Ukončenie hlavného vlákna
+::pthread - Ukončenie hlavného vlákna::Čo sa stane s ostatnými vláknami, ak hlavné vlákno (main) skončí bez volania pthread_join()?{
+  =Celý proces sa ukončí aj s ostatnými vláknami
+  ~Ostatné vlákna pokračujú v behu nezávisle
+  ~Ostatné vlákna sa automaticky dokončia a až potom proces skončí
+  ~Nastane memory leak, ale vlákna dobežia
 }
