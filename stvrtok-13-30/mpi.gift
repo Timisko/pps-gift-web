@@ -1,0 +1,27 @@
+::MPI - Definícia::Čo predstavuje MPI? {
+  ~%50%Štandard rozhrania pre paralelné programy
+  ~%0%Operačný systém pre klastere
+  ~%50%Model interakcie procesov cez odovzdávanie správ
+  ~%0%Programovací jazyk
+}
+
+::MPI - Rozdiel oproti iným technológiám::Ktoré tvrdenie najlepšie vystihuje rozdiel MPI od iných technológií paralelného programovania? {
+  ~%50%MPI je orientovaný na explicitný popis interakcie medzi nezávislými procesmi
+  ~%0%MPI skrýva všetky aspekty komunikácie pred programátorom
+  ~%50%MPI je obzvlášť vhodný pre výpočty distribuované medzi viacerými uzlami
+  ~%0%MPI je výhradne nástroj pre prácu s vláknami v rámci jedného procesu
+}
+
+::MPI - Distribuované výpočty::Prečo je MPI vhodný pre distribuované výpočty? {
+  ~%33.333%Pretože procesy môžu bežať na rôznych uzloch
+  ~%33.333%Pretože MPI nevyžaduje spoločný adresný priestor
+  ~%0%Pretože MPI automaticky eliminuje všetky komunikačné oneskorenia
+  ~%33.333%Pretože model interakcie procesov zostáva jednotný aj na klastri
+}
+
+::MPI - Skratka::Čo znamená skratka MPI? {
+  =Message Passing Interface
+  ~Multi Processing Interface
+  ~Memory Parallel Integration
+  ~Message Parallel Interface
+}
